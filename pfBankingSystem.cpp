@@ -20,7 +20,7 @@ double tasa_interes = 12.9;
 
 //struct
 struct Cliente {
-	int     plazo = 0;
+	int     plazo_en_dias = 0;
 	double  monto = 0.0;
 	double  saldo_actual = 0.0;
 	string  nombre;
@@ -125,7 +125,7 @@ int es_entero_for() {
 int registro_cliente(){
 	Cliente   cliente_nuevo;
 	int 	  clientes_a_registrar;
-	int       plazo_cliente_nuevo;
+	int       plazo_en_dias_cliente_nuevo;
 	double    monto_cliente_nuevo;
 	double    saldo_actual_cliente_nuevo;
 	string    nombre_cliente_nuevo;
@@ -163,13 +163,13 @@ int registro_cliente(){
 		cin >> monto_cliente_nuevo;
 		cliente_nuevo.monto = monto_cliente_nuevo;
 	
-		cout << "\nPlazo del cliente nuevo: ";
-		cin >> plazo_cliente_nuevo;
-		cliente_nuevo.plazo = plazo_cliente_nuevo;
+		cout << "\nPlazo en dias del cliente nuevo: ";
+		cin >> plazo_en_dias_cliente_nuevo;
+		cliente_nuevo.plazo_en_dias = plazo_en_dias_cliente_nuevo;
 		cin.ignore();
 		
 		outFile << nombre_cliente_nuevo << "," << rfc_cliente_nuevo << "," << saldo_actual_cliente_nuevo
-		<< "," << monto_cliente_nuevo << ","  << plazo_cliente_nuevo << "\n";
+		<< "," << monto_cliente_nuevo << ","  << plazo_en_dias_cliente_nuevo << "\n";
 		
 		cout << "\nUsuario creado exitosamente.\n";
 		
