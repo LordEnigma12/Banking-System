@@ -1,3 +1,11 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
 #include <iostream>
 #include <string>
 #include <limits>
@@ -119,6 +127,42 @@ int es_entero_for() {
     }
 }
 
+int calcular_plazo_en_dias() {//para que al ingresar el plazo solo sea en dias 
+    int opcion;
+    cout << "\n¿Desea ingresar el plazo en?\n";
+    cout << "1. Años\n";
+    cout << "2. Meses\n";
+    cout << "Seleccione una opción: ";
+    opcion = es_entero_for();
+
+    int total_meses = 0;
+
+    if (opcion == 1) {
+        int anios;
+        cout << "\nIngrese el número de años: ";
+        anios = es_entero_for();
+        total_meses = anios * 12;
+    } else if (opcion == 2) {
+        int meses;
+        cout << "\nIngrese el número de meses: ";
+        meses = es_entero_for();
+        total_meses = meses;
+    } else {
+        cout << "\nOpción inválida.\n";
+        return -1;
+    }
+
+    // Validar rango (mínimo 1 mes, máximo 72 meses)
+    if (total_meses < 12 || total_meses > 72) {
+        cout << "\nError: El plazo debe estar entre 1 año y 6 años.\n";
+        return -1;
+    }
+
+    // Convertir meses a días (aprox. 30 días por mes)
+    int plazo_en_dias = total_meses * 30;
+    return plazo_en_dias;
+}
+
 
 
 //funciones del menu
@@ -163,10 +207,9 @@ int registro_cliente(){
 		cin >> monto_cliente_nuevo;
 		cliente_nuevo.monto = monto_cliente_nuevo;
 	
-		cout << "\nPlazo en dias del cliente nuevo: ";
-		cin >> plazo_en_dias_cliente_nuevo;
-		cliente_nuevo.plazo_en_dias = plazo_en_dias_cliente_nuevo;
-		cin.ignore();
+	    cliente_nuevo.plazo_en_dias = calcular_plazo_en_dias();
+        cin.ignore();
+		
 		
 		outFile << nombre_cliente_nuevo << "," << rfc_cliente_nuevo << "," << saldo_actual_cliente_nuevo
 		<< "," << monto_cliente_nuevo << ","  << plazo_en_dias_cliente_nuevo << "\n";
